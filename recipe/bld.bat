@@ -3,7 +3,7 @@ mkdir build
 cd build
 if errorlevel 1 exit 1
 
-qmake ..\qcg.pro
+%PREFIX%\Library\lib\qt6\bin\qmake ..\qcg.pro
 if errorlevel 1 exit 1
 
 jom
