@@ -1,5 +1,5 @@
 {% set name = "qcachegrind" %}
-{% set version = "0.7.4" %}
+{% set version = "25.07.90" %}
 
 package:
   name: {{ name }}
@@ -7,13 +7,11 @@ package:
 
 source:
   fn: {{ name }}-{{ version }}.tar.gz
-  url: https://sourceforge.net/projects/kcachegrind/files/kcachegrind-{{ version }}.tar.gz
-  sha256: 0bf6efb647d500bf09bbbab617d30a8a2a0a2cbf87fd1f2a1375d774c005b379
-  patches:
-    - add-qobject-header.patch
+  url: https://invent.kde.org/sdk/kcachegrind/-/archive/v{{ version }}/kcachegrind-v{{ version }}.tar.gz
+  sha256: 3e3f683d92dd990124bd06de7b8be131dec9ae3aea4dbbfe7084fca471ee4da7
 
 build:
-  number: 1
+  number: 0
   skip: True  # [ppc64le]
 
 requirements:
@@ -23,18 +21,15 @@ requirements:
     - {{ stdlib("c") }}
     - {{ cdt('mesa-libgl-devel') }}  # [linux]
     - {{ cdt('mesa-dri-drivers') }}  # [linux]
-    - {{ cdt('libselinux') }}  # [linux]
-    - {{ cdt('libxdamage') }}  # [linux]
-    - {{ cdt('libxxf86vm') }}  # [linux]
-    - {{ cdt('libxext') }}     # [linux]
+    - libglx-devel  # [linux]
+    - libopengl-devel  # [linux]
     - jom       # [win]
     - m2-patch  # [win]
-    - automake  # [unix]
     - make      # [not win]
     - patch     # [not win]
   host:
-    - xorg-libxfixes  # [linux]
-    - qt-main
+    - {{ cdt('libglvnd-glx') }}  # [linux]
+    - qt6-main
 
 
 test:
@@ -45,16 +40,16 @@ test:
     - if not exist %LIBRARY_BIN%\qcachegrind.exe exit 1  # [win]
 
 about:
-  home: http://kcachegrind.sourceforge.net/html/Home.html
+  home: https://apps.kde.org/en-gb/kcachegrind/
   license: GPL-2.0-only
   license_family: GPL
-  license_file: COPYING
+  license_file: LICENSES/GPL-2.0-only.txt
   summary: A profiling data visualizer
   description: |
     This tool allows visualisation of profiling data in the callgrind-format.
-  doc_url: http://kcachegrind.sourceforge.net/html/Documentation.html
-  doc_source_url: https://github.com/kcachegrind/kcachegrind.github.io/blob/master/html
-  dev_url: https://sourceforge.net/projects/kcachegrind
+  doc_url: https://docs.kde.org/stable5/en/kcachegrind/kcachegrind/index.html
+  doc_source_url: https://invent.kde.org/sdk/kcachegrind/-/tree/master/doc
+  dev_url: https://invent.kde.org/sdk/kcachegrind
 
 extra:
   recipe-maintainers:

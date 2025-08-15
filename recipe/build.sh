@@ -4,10 +4,11 @@ mkdir build
 cd build
 
 if [[ ${target_platform} =~ .*linux.* ]]; then
-    export LDFLAGS="${LDFLAGS} -Wl,-rpath-link,${PREFIX}/lib"
+    ln -s ${PREFIX}/x86_64-conda-linux-gnu/sysroot/usr/lib64/libGL.so ${PREFIX}/lib/libGL.so
 fi
+
 # -early is needed here to avoid qmake attempting to run g++
-qmake -early ../qcg.pro \
+${PREFIX}/lib/qt6/bin/qmake -early ../qcg.pro \
         QMAKE_CXX=${CXX}                   \
         QMAKE_LINK=${CXX}                  \
         QMAKE_CXXFLAGS="${CXXFLAGS}"       \

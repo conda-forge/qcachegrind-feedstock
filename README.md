@@ -3,15 +3,15 @@ About qcachegrind-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/qcachegrind-feedstock/blob/main/LICENSE.txt)
 
-Home: http://kcachegrind.sourceforge.net/html/Home.html
+Home: https://apps.kde.org/en-gb/kcachegrind/
 
 Package license: GPL-2.0-only
 
 Summary: A profiling data visualizer
 
-Development: https://sourceforge.net/projects/kcachegrind
+Development: https://invent.kde.org/sdk/kcachegrind
 
-Documentation: http://kcachegrind.sourceforge.net/html/Documentation.html
+Documentation: https://docs.kde.org/stable5/en/kcachegrind/kcachegrind/index.html
 
 This tool allows visualisation of profiling data in the callgrind-format.
 
