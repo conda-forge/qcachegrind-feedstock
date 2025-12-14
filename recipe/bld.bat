@@ -3,8 +3,8 @@ mkdir build
 cd build
 if errorlevel 1 exit 1
 
-%PREFIX%\Library\lib\qt6\bin\qmake ..\qcg.pro
-if errorlevel 1 exit 1
+%PREFIX%\Library\lib\qt6\bin\qmake ..\qcg.pro -spec %PREFIX%\Library\lib\qt6\mkspecs\win32-msvc -qtconf %PREFIX%\Library\bin\qt6.conf
+if errorlevel 1 exit 1-qtconf
 
 jom
 if errorlevel 1 exit 1
