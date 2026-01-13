@@ -11,7 +11,7 @@ source:
   sha256: 3e3f683d92dd990124bd06de7b8be131dec9ae3aea4dbbfe7084fca471ee4da7
 
 build:
-  number: 0
+  number: 1
   skip: True  # [ppc64le]
 
 requirements:
