@@ -11,16 +11,14 @@ source:
   sha256: 3e3f683d92dd990124bd06de7b8be131dec9ae3aea4dbbfe7084fca471ee4da7
 
 build:
-  number: 1
-  skip: True  # [ppc64le]
+  number: 2
+  skip: true  # [ppc64le]
 
 requirements:
   build:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - {{ stdlib("c") }}
-    - {{ cdt('mesa-libgl-devel') }}  # [linux]
-    - {{ cdt('mesa-dri-drivers') }}  # [linux]
     - libglx-devel  # [linux]
     - libopengl-devel  # [linux]
     - jom       # [win]
@@ -28,8 +26,8 @@ requirements:
     - make      # [not win]
     - patch     # [not win]
   host:
-    - {{ cdt('libglvnd-glx') }}  # [linux]
     - qt6-main
+    - libgl-devel                    # [linux]
 
 
 test:
