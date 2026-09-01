@@ -3,7 +3,7 @@
 mkdir build
 cd build
 
-if [[ ${target_platform} =~ .*linux.* ]]; then
+if [[ ${target_platform} =~ .*linux.* ]] && [[ ! -e ${PREFIX}/lib/libGL.so ]]; then
     ln -s ${PREFIX}/x86_64-conda-linux-gnu/sysroot/usr/lib64/libGL.so ${PREFIX}/lib/libGL.so
 fi
 

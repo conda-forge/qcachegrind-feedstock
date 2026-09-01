@@ -1,0 +1,68 @@
+schema_version: 1
+
+context:
+  name: qcachegrind
+  version: "25.07.90"
+
+package:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  url: https://invent.kde.org/sdk/kcachegrind/-/archive/v${{ version }}/kcachegrind-v${{ version }}.tar.gz
+  sha256: 3e3f683d92dd990124bd06de7b8be131dec9ae3aea4dbbfe7084fca471ee4da7
+
+build:
+  number: 2
+  skip: ppc64le
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ compiler('cxx') }}
+    - ${{ stdlib("c") }}
+    - if: linux
+      then: ${{ cdt('mesa-libgl-devel') }}
+    - if: linux
+      then: ${{ cdt('mesa-dri-drivers') }}
+    - if: linux
+      then: libglx-devel
+    - if: linux
+      then: libopengl-devel
+    - if: win
+      then: jom
+    - if: win
+      then: m2-patch
+    - if: not win
+      then: make
+    - if: not win
+      then: patch
+  host:
+    - if: linux
+      then: ${{ cdt('libglvnd-glx') }}
+    - qt6-main
+
+tests:
+  - script:
+      - if: unix
+        then: test -f ${PREFIX}/bin/cgview
+      - if: unix
+        then: test -f ${PREFIX}/bin/qcachegrind
+      - if: win
+        then: if not exist %LIBRARY_BIN%\cgview.exe exit 1
+      - if: win
+        then: if not exist %LIBRARY_BIN%\qcachegrind.exe exit 1
+
+about:
+  license: GPL-2.0-only
+  license_file: LICENSES/GPL-2.0-only.txt
+  summary: A profiling data visualizer
+  description: |
+    This tool allows visualisation of profiling data in the callgrind-format.
+  homepage: https://apps.kde.org/en-gb/kcachegrind/
+  repository: https://invent.kde.org/sdk/kcachegrind
+  documentation: https://docs.kde.org/stable5/en/kcachegrind/kcachegrind/index.html
+
+extra:
+  recipe-maintainers:
+    - timkpaine
